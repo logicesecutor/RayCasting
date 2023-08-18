@@ -4,25 +4,28 @@ int nRays = 500;
 
 float rotAngle = 0;
 float rotVelocity = 4;  //radians per frame
-LightPoint p;
+LightPoint player;
 
-ArrayList<Wall> walls;
+ArrayList<Wall> edgeWalls;
 
 void setup() {
-  size(1000, 500, P2D);
+  size(1000, 500, P2D); //<>//
   //fullScreen(P2D);
   
-  float dividedWidth = width*0.5;
+  float dividedWidth = width * 0.5;
   float dividedHeight = height;
   
-  p = new LightPoint(FOV, nRays, dividedWidth, dividedHeight);
-  walls = new ArrayList();
+  player = new LightPoint(FOV, nRays, dividedWidth, dividedHeight);
+  edgeWalls = new ArrayList();
 
   //Edge Walls
-  walls.add(new Wall(0, 0, dividedWidth, 0));
-  walls.add(new Wall(0, 0, 0, dividedHeight));
-  walls.add(new Wall(0, dividedHeight, dividedWidth, dividedHeight));
-  walls.add(new Wall(dividedWidth, 0, dividedWidth, dividedHeight));
+  edgeWalls.add(new Wall(0, 0, dividedWidth, 0, "Top")); //<>//
+  edgeWalls.add(new Wall(0, 0, 0, dividedHeight, "Left"));
+  edgeWalls.add(new Wall(0, dividedHeight, dividedWidth, dividedHeight, "Right"));
+  edgeWalls.add(new Wall(dividedWidth, 0, dividedWidth, dividedHeight, "Bottom"));
+  
+  edgeWalls.add(new Wall(dividedWidth * 0.5, 0, dividedWidth * 0.5, dividedWidth * 0.5, "In the middle"));
+  
   //Other Random Walls
   //for (int i=0; i<nWalls; ++i)
   //  walls.add(new Wall(random(0, dividedWidth), 
@@ -37,19 +40,25 @@ void draw() {
 
   background(0);
 
-  for (Wall w : walls) w.show();
+  for (Wall ew : edgeWalls) ew.show2D();
   
-  p.update(mouseX, mouseY, rotAngle);
-  p.show();
+  player.updateRotation(rotAngle); //<>//
+  player.show(edgeWalls); //<>//
 
   //println(frameRate);
 }
 
 void keyPressed(){
   if (key == 'a')
+    //player.updateRotation(-rotVelocity);
     rotAngle = -rotVelocity;
   if (key == 'd')
+    //player.updateRotation(rotVelocity);
     rotAngle = rotVelocity;
+}
+
+void mouseMoved(){
+  player.updatePosition(mouseX, mouseY);
 }
 
 void keyReleased(){
