@@ -1,7 +1,6 @@
 class LightPoint { //<>// //<>// //<>//
 
-  // List of Rays that we cast from that point in a specific direction
-  // in a range of Angle
+  // List of Rays that we cast from a point in a specific direction
   ArrayList<Ray> rays = new ArrayList();
 
   float nRays;  // Number of rays we cast from the light point
@@ -13,6 +12,7 @@ class LightPoint { //<>// //<>// //<>//
   PVector pos;
   PVector cameraDir;
   PVector sentinelVector;
+  float rectWidth;
 
   LightPoint(int FOV, int nRays, float windowWidth, float windowHeight) {
 
@@ -23,14 +23,13 @@ class LightPoint { //<>// //<>// //<>//
     this.FOV = FOV;
     this.windowWidth = windowWidth;
     this.windowHeight = windowHeight;
+    this.rectWidth = this.windowWidth / nRays;
 
     this.sentinelVector = new PVector(Float.MAX_VALUE, Float.MAX_VALUE);
 
-    //this.cameraDir = ((this.nRays % 2) == 0) ? int(nRays * 0.5 -1) : int(nRays * 0.5);
     this.cameraDir = PVector.fromAngle(radians(FOV * 0.5)).setMag(20);
 
     for (int i = 0; i < nRays; i++)
-      //rays.add(new Ray (this.pos, i* offset));
       this.rays.add(new Ray(this.pos, PVector.fromAngle(radians(i * offset))));
   }
 
@@ -69,6 +68,7 @@ class LightPoint { //<>// //<>// //<>//
       //Find nearest wall per each ray and render it
       float minDistance = Float.MAX_VALUE;
       float intersectDistance;
+      Wall nearestWall = null;
 
       // Cast each ray against each wall in the scene (Brute Force slow)
       // TODO: consider using space quantization or quadTree data-structures
@@ -79,30 +79,31 @@ class LightPoint { //<>// //<>// //<>//
           continue;
 
         // Save the nearest point of intersection
-        if (intersectDistance < minDistance)
+        if (intersectDistance < minDistance){
           minDistance = intersectDistance;
+          nearestWall = w;
+        }
       }
 
       // If no wall was find do not render the Ray
-      if (minDistance == Float.MAX_VALUE)
+      if (minDistance == Float.MAX_VALUE || nearestWall == null)
         continue;
 
       // Draw the ray from the start point to the intersection point
       r.show(new PVector(r.start.x + r.dir.x * minDistance, r.start.y + r.dir.y * minDistance));
 
       //FISH EYE CORRECTION
-      float z = minDistance * cos(PVector.angleBetween(this.cameraDir, r.dir));
-      float wallHeight = this.windowHeight  *  (this.windowHeight - 200 )/ z;
+      float angle = PVector.angleBetween(this.cameraDir, r.dir);
+      float z = minDistance * cos(angle);
       
-      //float angle = PVector.angleBetween(this.rays.get(this.cameraDir).dir, r.dir);
-      //float cosine = PVector.dot(this.rays.get(this.cameraDir).dir, r.dir);
-      //float fishEyeCorr = minDistance * cosine;
-      float mappedHeight = map(z, .1, windowHeight, windowHeight, 1);
-      if (mappedHeight < 0) continue;
+      //float wallHeight = projectionPlanePlayerDistance * 100 / z;
+      float wallHeight = this.windowHeight * 0.2 * projectionPlanePlayerDistance / z ;
+      //float strokeColor = map(z * z, 0, this.windowWidth * this.windowWidth, 255, 0);
+      float strokeAlpha = wallHeight / this.windowHeight;
+      float wallCenterX = this.windowWidth + (0.5 + index) * this.rectWidth;
+      float wallCenterY = this.windowHeight * 0.5;
 
-      rectMode(CENTER);
-      stroke(wallHeight/windowHeight * 255);
-      rect(this.windowWidth+index, windowHeight*0.5, 1, wallHeight);
+      nearestWall.show3D(wallCenterX, wallCenterY, this.rectWidth, wallHeight, strokeAlpha);
     }
   }
 

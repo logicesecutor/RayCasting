@@ -17,9 +17,6 @@ class Ray { //<>// //<>//
     line(250, 250, 250 + this.dir.x * 20, 250 + this.dir.y * 20);
   }
   
-  float getAngle(){
-    return PVector.angleBetween(new PVector(0,1), this.dir);
-  }
 
   void show(PVector intersectionPoint) {
     stroke(255);
