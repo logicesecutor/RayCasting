@@ -103,7 +103,14 @@ class LightPoint { //<>// //<>// //<>//
       float wallCenterX = this.windowWidth + (0.5 + index) * this.rectWidth;
       float wallCenterY = this.windowHeight * 0.5;
 
-      nearestWall.show3D(wallCenterX, wallCenterY, this.rectWidth, wallHeight, strokeAlpha);
+      nearestWall.show3D(index, 
+                         this.windowHeight, 
+                         wallCenterX, 
+                         wallCenterY, 
+                         this.rectWidth, 
+                         wallHeight, 
+                         strokeAlpha
+                         );
     }
   }
 

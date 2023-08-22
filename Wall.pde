@@ -20,10 +20,28 @@ class Wall {
     line(P1.x, P1.y, P2.x, P2.y);
   }
   
-  void show3D(float centerX, float centerY, float rectWidth, float rectHeight, float strokeAlpha) {
+  void show3D(float index,
+              float windowHeight,
+              float centerX, 
+              float centerY, 
+              float rectWidth, 
+              float rectHeight, 
+              float strokeAlpha) {
+    // Ceiling
+    rectMode(CORNER);
+    stroke(#abcdef);
+    rect(centerX, 0, rectWidth, (windowHeight - rectHeight) * 0.5);
+    
+    // Wall
     rectMode(CENTER);
-    stroke(this.c, strokeAlpha);
-    fill(this.c);
+    stroke(this.c);
+    //fill(this.c);
     rect(centerX, centerY, rectWidth, rectHeight);
+    
+    // Floor
+    rectMode(CORNER);
+    stroke(155);
+    rect(centerX, centerY + rectHeight * 0.5 , rectWidth, (windowHeight - rectHeight) * 0.5);
+    
   }
 }
