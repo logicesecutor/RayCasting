@@ -19,7 +19,7 @@ LightPoint player;
 ArrayList<Wall> edgeWalls;
 
 void setup() {
-  size(1280, 720, P2D);
+  //size(1280, 720, P2D);
   fullScreen(P2D);
 
   dividedWidth = width * 0.5;

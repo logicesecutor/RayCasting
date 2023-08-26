@@ -94,10 +94,10 @@ class LightPoint { //<>// //<>// //<>//
 
       //FISH EYE CORRECTION
       float angle = PVector.angleBetween(this.cameraDir, r.dir);
-      float z = minDistance * cos(angle);
+      float fina_distance = minDistance * cos(angle);
       
       //float wallHeight = projectionPlanePlayerDistance * 100 / z;
-      float wallHeight = this.windowHeight * 0.2 * projectionPlanePlayerDistance / z ;
+      float wallHeight = this.windowHeight * 0.2 * projectionPlanePlayerDistance / fina_distance ;
       //float strokeColor = map(z * z, 0, this.windowWidth * this.windowWidth, 255, 0);
       float strokeAlpha = wallHeight / this.windowHeight;
       float wallCenterX = this.windowWidth + (0.5 + index) * this.rectWidth;
