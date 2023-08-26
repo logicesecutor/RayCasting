@@ -14,7 +14,7 @@ If interested to modify the code consult the reference page on the web-site:
 
 The objective was to develop an easy to understand algorithm to visualize the concept of casting a ray in 2D and, with some math intuition, project the world in a threedimensional form. This type of algorithm was at the base of the very famous Game DOOM!
 
-![Working Algorithm](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
+![Working Algorithm]()
 
 # How it work
 We have 3 main class:
