@@ -9,7 +9,7 @@ The main language is **Java**. We can easily draw some lines or 3D shapes on the
 You just need to download the IDE, the code, open the code inside Processing, and click on the **"Run"** button.
 
 If interested in modifying the code consult the reference page on the website:
-[Processing Reference]([https://processing.org/download](https://processing.org/reference))
+[Processing Reference](https://processing.org/reference)
 
 The objective was to develop an easy-to-understand algorithm to visualize the concept of casting a ray in 2D and, with some math intuition, project the world in a three-dimensional form. This type of algorithm was at the base of the very famous Game DOOM!
 
