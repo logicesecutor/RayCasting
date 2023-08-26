@@ -1,4 +1,4 @@
-# RayCasting
+# Ray Casting
 An experimental project to understand the math and the logic behind the ray-casting graphic algorithm.
 
 # Used IDE
@@ -75,7 +75,7 @@ float projectionPlanePlayerDistance = (projectionPlaneWidth * 0.5) / tan(radians
 float final wallHeight = windowHeight * reduction_factor * projectionPlanePlayerDistance / intersection_distance ;
 ```
 
-# Fish-eye Effect
+## Fish-eye Effect
 We encounter visual distortion in the rendering due to the fact that when we face a wall and cast rays some rays are longer than others and that leads to curved rendered walls.
 ```java
 correct_intersection_distance = intersection_distance * cos(angle_from_player_direction);
@@ -84,7 +84,7 @@ correct_intersection_distance = intersection_distance * cos(angle_from_player_di
 
 [Fish eye adjustment Reference](https://www.playfuljs.com/a-first-person-engine-in-265-lines/)
 
-# Comands
+# Commands
 The player
 - Rotate counter-clockwise with "A";
 - Rotate clockwise with "D";
