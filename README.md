@@ -68,13 +68,19 @@ Final Ray = origin + direction * intersection_distance;
 It is easy to simulate a 3D environment starting from the concept expressed above.
 We can think about it as at each intersection a piece of the world needs to be rendered into the screen. 
 For each intersection, I draw a vertical line whose height must be inversely proportional to the intersection distance: the greater the distance, the smaller the line will be and vice-versa.  
+This can be seen as projecting a line on a view plane.
+
+```java
+float projectionPlanePlayerDistance = (projectionPlaneWidth * 0.5) / tan(radians(FOV * 0.5));
+float final wallHeight = windowHeight * reduction_factor * projectionPlanePlayerDistance / intersection_distance ;
+```
 
 # Fish-eye Effect
-We encounter visual distortion in the rendering due to the fact that when we face a wall and cast rays some rays are longer than others and  
+We encounter visual distortion in the rendering due to the fact that when we face a wall and cast rays some rays are longer than others and that leads to curved rendered walls.
 ```java
 correct_intersection_distance = intersection_distance * cos(angle_from_player_direction);
 ```
-![Fish eye adjustment]()
+![Fish eye adjustment](https://github.com/logicesecutor/RayCasting/blob/main/src/raycaster-distance.png)
 [Fish eye adjustment Reference](https://www.playfuljs.com/a-first-person-engine-in-265-lines/)
 
 # Comands
