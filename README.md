@@ -9,7 +9,7 @@ The main language is **Java**. We can easily draw some lines or 3D shapes on the
 You just need to download the IDE, the code, open the code inside Processing, and click on the **"Run"** button.
 
 If interested in modifying the code consult the reference page on the website:
-[Processing Reference]([https://processing.org/download](https://processing.org/reference))
+[Processing Reference](https://processing.org/reference)
 
 The objective was to develop an easy-to-understand algorithm to visualize the concept of casting a ray in 2D and, with some math intuition, project the world in a three-dimensional form. This type of algorithm was at the base of the very famous Game DOOM!
 
@@ -68,13 +68,19 @@ Final Ray = origin + direction * intersection_distance;
 It is easy to simulate a 3D environment starting from the concept expressed above.
 We can think about it as at each intersection a piece of the world needs to be rendered into the screen. 
 For each intersection, I draw a vertical line whose height must be inversely proportional to the intersection distance: the greater the distance, the smaller the line will be and vice-versa.  
+This can be seen as projecting a line on a view plane.
+
+```java
+float projectionPlanePlayerDistance = (projectionPlaneWidth * 0.5) / tan(radians(FOV * 0.5));
+float final wallHeight = windowHeight * reduction_factor * projectionPlanePlayerDistance / intersection_distance ;
+```
 
 # Fish-eye Effect
-We encounter visual distortion in the rendering due to the fact that when we face a wall and cast rays some rays are longer than others and  
+We encounter visual distortion in the rendering due to the fact that when we face a wall and cast rays some rays are longer than others and that leads to curved rendered walls.
 ```java
 correct_intersection_distance = intersection_distance * cos(angle_from_player_direction);
 ```
-![Fish eye adjustment]()
+![Fish eye adjustment](https://github.com/logicesecutor/RayCasting/blob/main/src/raycaster-distance.png)
 [Fish eye adjustment Reference](https://www.playfuljs.com/a-first-person-engine-in-265-lines/)
 
 # Comands
@@ -83,7 +89,7 @@ The player
 - Rotate clockwise with "D";
 - Move following the mouse pointer.
 
-![Working Algorithm]()
+![Working Algorithm](https://github.com/logicesecutor/RayCasting/blob/main/src/final_results.gif)
 
 
 
