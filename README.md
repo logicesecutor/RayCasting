@@ -81,6 +81,7 @@ We encounter visual distortion in the rendering due to the fact that when we fac
 correct_intersection_distance = intersection_distance * cos(angle_from_player_direction);
 ```
 ![Fish eye adjustment](https://github.com/logicesecutor/RayCasting/blob/main/src/raycaster-distance.png)
+
 [Fish eye adjustment Reference](https://www.playfuljs.com/a-first-person-engine-in-265-lines/)
 
 # Comands
