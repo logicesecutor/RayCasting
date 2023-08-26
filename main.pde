@@ -20,7 +20,7 @@ ArrayList<Wall> edgeWalls;
 
 void setup() {
   size(1280, 720, P2D);
-  //fullScreen(P2D);
+  fullScreen(P2D);
 
   dividedWidth = width * 0.5;
   dividedHeight = height;
@@ -44,7 +44,9 @@ void setup() {
   edgeWalls.add(new Wall(0, dividedHeight, dividedWidth, dividedHeight, "Right", color(0, 0, 255)));
   edgeWalls.add(new Wall(dividedWidth, 0, dividedWidth, dividedHeight, "Bottom", color(0, 255, 255)));
 
-  edgeWalls.add(new Wall(dividedWidth * 0.5, 0, dividedWidth * 0.5, dividedWidth * 0.5, "In the middle", color(255, 0, 255)));
+  edgeWalls.add(new Wall(dividedWidth * 0.5, 0, dividedWidth * 0.5, dividedWidth * 0.5, "In the middle", randomColor()));
+  edgeWalls.add(new Wall(dividedWidth * 0.5 + 20, 0, dividedWidth * 0.5 + 20, dividedWidth * 0.5, "In the middle", randomColor()));
+  edgeWalls.add(new Wall(dividedWidth * 0.5, dividedWidth * 0.5, dividedWidth * 0.5 + 20, dividedWidth * 0.5, "In the middle", randomColor()));
 
   //Other Random Walls
   //for (int i=0; i<nWalls; ++i)

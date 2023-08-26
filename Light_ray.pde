@@ -14,7 +14,7 @@ class Ray { //<>// //<>//
 
   void updateRotation(float angle) {
     this.dir.rotate(radians(angle));
-    line(250, 250, 250 + this.dir.x * 20, 250 + this.dir.y * 20);
+    line(width * 0.25, height * 0.5, width * 0.25 + this.dir.x * 20, height * 0.5 + this.dir.y * 20);
   }
   
 
