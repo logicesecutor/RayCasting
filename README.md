@@ -1,6 +1,8 @@
 # Ray Casting
 An experimental project to understand the math and the logic behind the ray-casting graphic algorithm.
 
+<img src="https://github.com/logicesecutor/RayCasting/blob/main/src/final_results.gif" alt="Working Algorithm" width="800"/>
+
 # Used IDE
 To develop this project I have used Processing IDE which provides an easy-to-use interface to the OpenGL API.
 The main language is **Java**. We can easily draw some lines or 3D shapes on the screen with a few lines of code.
@@ -90,7 +92,7 @@ The player
 - Rotate clockwise with "D";
 - Move following the mouse pointer.
 
-<img src="https://github.com/logicesecutor/RayCasting/blob/main/src/final_results.gif" alt="Working Algorithm" width="800"/>
+
 
 
 
